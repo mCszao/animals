@@ -3,3 +3,9 @@
     width: 15vw;
     height: 10vh;
 }
+
+@media (max-width: 720px) {
+    .logo {
+        width: 30vw;
+    }
+}
