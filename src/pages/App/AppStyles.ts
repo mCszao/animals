@@ -6,4 +6,15 @@ export const Body = styled.div`
 `;
 export const Header = styled.header`
     background-color: #10454f;
+    display: flex;
+    justify-content: space-evenly;
+`;
+
+export const Input = styled.input`
+    width: 15vw;
+    height: 2rem;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    align-self: center;
 `;
