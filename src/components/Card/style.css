@@ -1,0 +1,32 @@
+.card {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.card img {
+    border-radius: 1rem;
+    width: 30vw;
+    max-height: 80vh;
+    transition: 0.5s linear;
+}
+
+.card p {
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%);
+    padding: 1rem;
+    border-radius: 1rem;
+    opacity: 0;
+    transition: 0.5s linear;
+}
+.card:hover > p {
+    background-color: aliceblue;
+    opacity: 1;
+    box-shadow: 60px 6px teal;
+}
+.card:hover > img {
+    transform: scale(0.9);
+}

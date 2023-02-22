@@ -1,0 +1,9 @@
+.swiper {
+    display: flex;
+    margin-top: 1rem;
+}
+.swiper-slider {
+    display: table;
+    height: 100%;
+    max-width: 40vw;
+}
