@@ -5,18 +5,20 @@ import logotype from '../../assets/images/logo.png';
 import { Slider } from '../../components/Slider/Slider';
 import { SwiperSlide } from 'swiper/react';
 import { Card } from '../../components/Card/Card';
-
 interface Item {
-    titulo: string;
-    avatar: string;
+    original_title: string;
+    poster_path: string;
 }
 function App() {
+    const ApiImageLink = 'https://image.tmdb.org/t/p/w500/';
     const [search, setSearch] = useState('');
     const [slides, setSlides] = useState<Item[]>([]);
     useEffect(() => {
-        fetch('https://api.b7web.com.br/cinema/')
+        fetch(
+            'https://api.themoviedb.org/3/movie/popular?api_key=d9933aa94f6c72dd8b077673c359fc82&language=en-US&page=1'
+        )
             .then((response) => response.json())
-            .then((json) => setSlides(json));
+            .then((json) => setSlides(json.results));
     });
     const sliderSettings = {
         spaceBetween: 10,
@@ -24,7 +26,12 @@ function App() {
     };
     const filteredCards =
         search.length != 0
-            ? slides.filter((item) => item.titulo.includes(search))
+            ? slides.filter((item) =>
+                  item.original_title
+                      .trim()
+                      .toLowerCase()
+                      .includes(search.trim().toLowerCase())
+              )
             : [];
     return (
         <AppStyles.Body>
@@ -46,16 +53,17 @@ function App() {
                     ? slides.map((item, index) => (
                           <SwiperSlide key={index}>
                               <Card
-                                  urlImage={item.avatar}
-                                  title={item.titulo}
+                                  urlImage={`${ApiImageLink}${item.poster_path}`}
+                                  title={item.original_title}
                               />
+                              <p></p>
                           </SwiperSlide>
                       ))
                     : filteredCards.map((item, index) => (
                           <SwiperSlide key={index}>
                               <Card
-                                  urlImage={item.avatar}
-                                  title={item.titulo}
+                                  urlImage={`${ApiImageLink}${item.poster_path}`}
+                                  title={item.original_title}
                               />
                           </SwiperSlide>
                       ))}
