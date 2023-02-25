@@ -1,10 +1,12 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import * as AppStyles from './AppStyles';
-import { Logo } from '../../components/Logo/Logo';
+import { Logo } from '../../components/Logo';
 import logotype from '../../assets/images/logo.png';
-import { Slider } from '../../components/Slider/Slider';
+import { Slider } from '../../components/Slider';
 import { SwiperSlide } from 'swiper/react';
-import { Card } from '../../components/Card/Card';
+import { Card } from '../../components/Card';
+import { PlusSquare } from 'lucide-react';
+import { ButtonIcon } from '../../components/ButtonIcon';
 interface Item {
     original_title: string;
     poster_path: string;
@@ -45,6 +47,11 @@ function App() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 ></AppStyles.Input>
+                <ButtonIcon
+                    children={
+                        <PlusSquare color='#fff' size={40} strokeWidth={1.5} />
+                    }
+                />
             </AppStyles.Header>
             <Slider settings={sliderSettings}>
                 {search.length === 0

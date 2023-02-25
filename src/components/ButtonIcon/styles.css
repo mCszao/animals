@@ -1,0 +1,8 @@
+.buttonIcon {
+    background: transparent;
+    border: none;
+}
+.buttonIcon:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
