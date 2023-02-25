@@ -26,12 +26,10 @@ function App() {
     };
     const filteredCards =
         search.length != 0
-            ? slides.filter((item) =>
-                  item.original_title
-                      .trim()
-                      .toLowerCase()
-                      .includes(search.trim().toLowerCase())
-              )
+            ? slides.filter((item) => {
+                  const regex = new RegExp(search, 'i');
+                  return item.original_title.match(regex);
+              })
             : [];
     return (
         <AppStyles.Body>
