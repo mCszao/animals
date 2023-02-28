@@ -1,5 +1,5 @@
 import { Swiper, SwiperProps } from 'swiper/react';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import 'swiper/css';
 import './style.css';
 
