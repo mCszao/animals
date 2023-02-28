@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as AppStyles from './AppStyles';
 import { Logo } from '../../components/Logo';
 import logotype from '../../assets/images/logo.png';
@@ -7,11 +7,17 @@ import { SwiperSlide } from 'swiper/react';
 import { Card } from '../../components/Card';
 import { PlusSquare } from 'lucide-react';
 import { ButtonIcon } from '../../components/ButtonIcon';
+import { Modal } from '../../components/Modal';
+import logoReact from '../../assets/images/react.svg';
+
 interface Item {
     original_title: string;
     poster_path: string;
 }
+
 function App() {
+    const [loading, setLoading] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
     const ApiImageLink = 'https://image.tmdb.org/t/p/w500/';
     const [search, setSearch] = useState('');
     const [slides, setSlides] = useState<Item[]>([]);
@@ -21,10 +27,14 @@ function App() {
         )
             .then((response) => response.json())
             .then((json) => setSlides(json.results));
+        setLoading(false);
     });
     const sliderSettings = {
         spaceBetween: 10,
         slidesPerView: 3,
+    };
+    const modalSettings = {
+        btnClose: true,
     };
     const filteredCards =
         search.length != 0
@@ -35,6 +45,16 @@ function App() {
             : [];
     return (
         <AppStyles.Body>
+            {loading && (
+                <AppStyles.ImgLoading src={logoReact}></AppStyles.ImgLoading>
+            )}
+            <Modal
+                isOpen={modalOpen}
+                modalOpen={() => {
+                    setModalOpen(!modalOpen);
+                }}
+                settings={modalSettings}
+            />
             <AppStyles.Header>
                 <Logo
                     url='http://localhost:5173/'
@@ -49,10 +69,18 @@ function App() {
                 ></AppStyles.Input>
                 <ButtonIcon
                     children={
-                        <PlusSquare color='#fff' size={40} strokeWidth={1.5} />
+                        <PlusSquare
+                            color='#fff'
+                            size={40}
+                            strokeWidth={1.5}
+                            onClick={() => setModalOpen(!modalOpen)}
+                        />
                     }
                 />
             </AppStyles.Header>
+            {loading && (
+                <AppStyles.ImgLoading src={logoReact}></AppStyles.ImgLoading>
+            )}
             <Slider settings={sliderSettings}>
                 {search.length === 0
                     ? slides.map((item, index) => (
