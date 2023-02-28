@@ -1,8 +1,5 @@
+import { CardProps } from '../../interfaces/ICardProps';
 import './style.css';
-interface CardProps {
-    urlImage: string;
-    title: string;
-}
 
 export const Card = ({ urlImage, title }: CardProps) => {
     return (

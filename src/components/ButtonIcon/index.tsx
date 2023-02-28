@@ -1,8 +1,6 @@
-import { ReactNode } from 'react';
+import { ButtonProps } from '../../interfaces/IButtonProps';
 import './styles.css';
-interface ButtonProps {
-    children: ReactNode;
-}
+
 export const ButtonIcon = ({ children }: ButtonProps) => {
     return (
         <button className='buttonIcon' type='button'>

@@ -1,10 +1,5 @@
+import { LogoProps } from '../../interfaces/ILogoProps';
 import styles from './style.module.css';
-
-interface LogoProps {
-    source: string;
-    altTxt: string;
-    url: string;
-}
 
 export const Logo = ({ source, altTxt, url }: LogoProps) => {
     return (

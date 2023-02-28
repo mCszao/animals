@@ -9,18 +9,14 @@ import { PlusSquare } from 'lucide-react';
 import { ButtonIcon } from '../../components/ButtonIcon';
 import { Modal } from '../../components/Modal';
 import logoReact from '../../assets/images/react.svg';
-
-interface Item {
-    original_title: string;
-    poster_path: string;
-}
+import { Res } from '../../interfaces/IRes';
 
 function App() {
     const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
     const ApiImageLink = 'https://image.tmdb.org/t/p/w500/';
     const [search, setSearch] = useState('');
-    const [slides, setSlides] = useState<Item[]>([]);
+    const [slides, setSlides] = useState<Res[]>([]);
     useEffect(() => {
         fetch(
             'https://api.themoviedb.org/3/movie/popular?api_key=d9933aa94f6c72dd8b077673c359fc82&language=en-US&page=1'

@@ -1,14 +1,8 @@
 import { XCircle } from 'lucide-react';
-import './styles.css';
 
-interface ModalProps {
-    settings: ModalSettings;
-    isOpen: boolean;
-    modalOpen: () => void;
-}
-interface ModalSettings {
-    btnClose?: boolean;
-}
+import './styles.css';
+import { ModalProps } from '../../interfaces/IModalProps';
+
 export const Modal = ({ settings, isOpen, modalOpen }: ModalProps) => {
     const newSet = settings;
     const handleClick = () => {};
