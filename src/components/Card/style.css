@@ -7,8 +7,8 @@
 
 .card img {
     border-radius: 1rem;
-    width: 30vw;
-    max-height: 80vh;
+    max-width: 70vw;
+    height: 80vh;
     transition: 0.5s linear;
 }
 
@@ -30,3 +30,15 @@
 .card:hover > img {
     transform: scale(0.9);
 }
+
+@media (min-width: 640px) {
+    .card img {
+        max-width: 40vw;
+    }
+}
+
+@media (min-width: 960px) {
+    .card img {
+        max-width: 30vw;
+    }
+} ;

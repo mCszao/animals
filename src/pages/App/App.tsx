@@ -10,6 +10,7 @@ import { ButtonIcon } from '../../components/ButtonIcon';
 import { Modal } from '../../components/Modal';
 import logoReact from '../../assets/images/react.svg';
 import { Res } from '../../interfaces/IRes';
+import { SwiperProps } from 'swiper/react';
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -25,9 +26,24 @@ function App() {
             .then((json) => setSlides(json.results));
         setLoading(false);
     });
-    const sliderSettings = {
-        spaceBetween: 10,
-        slidesPerView: 3,
+    const sliderSettings: SwiperProps = {
+        spaceBetween: 0,
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        navigation: true,
+        pagination: {
+            clickable: false,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                slidesPerGroup: 2,
+            },
+            960: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+            },
+        },
     };
     const modalSettings = {
         btnClose: true,
@@ -41,9 +57,6 @@ function App() {
             : [];
     return (
         <AppStyles.Body>
-            {loading && (
-                <AppStyles.ImgLoading src={logoReact}></AppStyles.ImgLoading>
-            )}
             <Modal
                 isOpen={modalOpen}
                 modalOpen={() => {

@@ -9,3 +9,4 @@ export const Card = ({ urlImage, title }: CardProps) => {
         </div>
     );
 };
+

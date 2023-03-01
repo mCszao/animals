@@ -12,7 +12,7 @@ export const Header = styled.header`
 `;
 
 export const Input = styled.input`
-    width: 15vw;
+    max-width: 25vw;
     height: 2rem;
     border: none;
     padding: 1rem;
