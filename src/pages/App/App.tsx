@@ -12,9 +12,6 @@ import logoReact from '../../assets/images/react.svg';
 import { Res } from '../../interfaces/IRes';
 import { SwiperProps } from 'swiper/react';
 import { MultiStepForm } from '../../components/MultiStepForm';
-import { IdentificationPet } from '../../components/IdentificationPet';
-import { InfosAddPet } from '../../components/InfosAddPet';
-import { AddPhotoPed } from '../../components/AddPhotoPet';
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -29,12 +26,9 @@ function App() {
             .then((response) => response.json())
             .then((json) => setSlides(json.results));
         setLoading(false);
-    });
-    const listElement = [
-        <IdentificationPet />,
-        <InfosAddPet />,
-        <AddPhotoPed />,
-    ];
+        console.log('hello world');
+    }, []);
+
     const sliderSettings: SwiperProps = {
         spaceBetween: 0,
         slidesPerView: 1,
@@ -72,7 +66,7 @@ function App() {
                     setModalOpen(!modalOpen);
                 }}
                 settings={modalSettings}
-                children={<MultiStepForm title={'Olá'} steps={listElement} />}
+                children={<MultiStepForm />}
             />
             <AppStyles.Header>
                 <Logo

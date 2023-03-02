@@ -1,41 +1,75 @@
-import { ReactNode, useState, MouseEvent } from 'react';
-import './style.css';
-interface MultiStepProps {
-    title: string;
-    steps: ReactNode[];
+import { useState } from 'react';
+import { IdentificationPet } from '../../components/IdentificationPet';
+import { InfosAddPet } from '../../components/InfosAddPet';
+import { AddPhotoPed } from '../../components/AddPhotoPet';
+import { ButtonPrevNext, MainContainer } from './styles';
+export interface MultiStepProps {
+    data: {
+        owner: string;
+        mail: string;
+        size?: number;
+        weight?: number;
+        sex: string;
+        color: string;
+        specie: string;
+    };
 }
-export const MultiStepForm = ({ title, steps }: MultiStepProps) => {
+export const MultiStepForm = () => {
+    const [data, setData] = useState({
+        owner: '',
+        mail: '',
+        size: 0,
+        weight: 0,
+        sex: '',
+        color: '',
+        specie: '',
+    });
+    const steps = [
+        <IdentificationPet data={data} />,
+        <InfosAddPet />,
+        <AddPhotoPed />,
+    ];
     const [step, setStep] = useState(0);
     const handleSubmit = () => {};
-    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (step >= 3 || step < 0) return;
         if (e.currentTarget.innerText === 'Avançar') setStep(step + 1);
         if (e.currentTarget.innerText != 'Avançar') setStep(step - 1);
     };
 
-    console.log(step);
-
     return (
-        <div className='teste'>
-            <h1>{title}</h1>
+        <MainContainer>
+            <h1></h1>
             <form>
-                <div>{steps[step]}</div>
+                {steps[step]}
                 {step != 0 && (
-                    <button onClick={handleClick} type='button'>
+                    <ButtonPrevNext
+                        borderColor=' #f00'
+                        onClick={handleClick}
+                        type='button'
+                    >
                         Voltar
-                    </button>
+                    </ButtonPrevNext>
                 )}
                 {step >= 2 && (
-                    <button type='submit' onClick={handleSubmit}>
+                    <ButtonPrevNext
+                        borderColor=' #10454f'
+                        type='submit'
+                        onClick={handleSubmit}
+                    >
                         Finalizar
-                    </button>
+                    </ButtonPrevNext>
                 )}
                 {step < 2 && (
-                    <button type='button' onClick={handleClick}>
+                    <ButtonPrevNext
+                        borderColor=' #10454f'
+                        type='button'
+                        onClick={handleClick}
+                    >
                         Avançar
-                    </button>
+                    </ButtonPrevNext>
                 )}
             </form>
-        </div>
+        </MainContainer>
     );
 };

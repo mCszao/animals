@@ -1,7 +1,8 @@
-export const IdentificationPet = () => {
+import { MultiStepProps } from '../MultiStepForm';
+export const IdentificationPet = ({ data }: MultiStepProps) => {
     return (
         <div>
-            <h1>Esse é do Identification</h1>
+            <input type='text' name='owner' />
         </div>
     );
 };
