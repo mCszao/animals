@@ -9,6 +9,7 @@
     align-items: center;
     justify-content: center;
     filter: drop-shadow(0 0 2em #61dafbd3);
+    background-color: rgba(0, 0, 0, 0.664);
 }
 .modal {
     position: absolute;
@@ -17,16 +18,19 @@
     background-color: #fff;
     border-radius: 0.5rem;
     z-index: 1001;
+    display: flex;
+    justify-content: center;
 }
 
 .buttonClose {
-    position: relative;
+    position: absolute;
     margin: 1rem;
     left: 90%;
     border: none;
     background: none;
     cursor: pointer;
     transform: ease 0.5s;
+    z-index: 2000;
 }
 
 .buttonClose:hover > svg {

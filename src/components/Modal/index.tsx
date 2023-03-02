@@ -12,7 +12,7 @@ export const Modal = ({
     const newSet = settings;
     if (isOpen) {
         return (
-            <div className='backdrop' onClick={modalOpen}>
+            <div className='backdrop'>
                 <div className='modal'>
                     {newSet.btnClose && (
                         <button
