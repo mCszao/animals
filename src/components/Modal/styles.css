@@ -11,9 +11,9 @@
     filter: drop-shadow(0 0 2em #61dafbd3);
 }
 .modal {
-    position: unset;
-    width: 95vw;
-    height: 90vh;
+    position: absolute;
+    width: 60vw;
+    height: 60vh;
     background-color: #fff;
     border-radius: 0.5rem;
     z-index: 1001;

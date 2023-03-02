@@ -3,7 +3,7 @@ export interface ModalProps {
     settings: ModalSettings;
     isOpen: boolean;
     modalOpen: () => void;
-    children?: ReactNode | null;
+    children?: ReactNode;
 }
 export interface ModalSettings {
     btnClose?: boolean;
