@@ -3,34 +3,15 @@ import { IdentificationPet } from '../../components/IdentificationPet';
 import { InfosAddPet } from '../../components/InfosAddPet';
 import { AddPhotoPed } from '../../components/AddPhotoPet';
 import { ButtonPrevNext, MainContainer } from './styles';
-export interface MultiStepProps {
-    data: {
-        owner: string;
-        mail: string;
-        size?: number;
-        weight?: number;
-        sex: string;
-        color: string;
-        specie: string;
-    };
-}
+import { useInput } from '../../hooks/useInput';
 export const MultiStepForm = () => {
-    const [data, setData] = useState({
-        owner: '',
-        mail: '',
-        size: 0,
-        weight: 0,
-        sex: '',
-        color: '',
-        specie: '',
-    });
-    const steps = [
-        <IdentificationPet data={data} />,
-        <InfosAddPet />,
-        <AddPhotoPed />,
-    ];
+    const { dataPet } = useInput();
+    const steps = [<IdentificationPet />, <InfosAddPet />, <AddPhotoPed />];
+
     const [step, setStep] = useState(0);
-    const handleSubmit = () => {};
+    const handleSubmit = () => {
+        console.log(dataPet);
+    };
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (step >= 3 || step < 0) return;
         if (e.currentTarget.innerText === 'Avançar') setStep(step + 1);
@@ -54,7 +35,7 @@ export const MultiStepForm = () => {
                 {step >= 2 && (
                     <ButtonPrevNext
                         borderColor=' #10454f'
-                        type='submit'
+                        type='button'
                         onClick={handleSubmit}
                     >
                         Finalizar
