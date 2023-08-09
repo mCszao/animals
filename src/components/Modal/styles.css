@@ -12,20 +12,22 @@
     background-color: rgba(0, 0, 0, 0.664);
 }
 .modal {
+    padding: 10px;
     position: absolute;
-    width: 60vw;
-    height: 60vh;
+    width: 90vw;
+    height: 80vh;
     background-color: #fff;
     border-radius: 0.5rem;
     z-index: 1001;
     display: flex;
     justify-content: center;
+    max-width: 960px;
 }
 
 .buttonClose {
     position: absolute;
     margin: 1rem;
-    left: 90%;
+    right: 0;
     border: none;
     background: none;
     cursor: pointer;
@@ -38,17 +40,36 @@
     transform: scale(1.2);
 }
 
-@media (max-width: 840px) {
-    .buttonClose {
-        left: 85%;
+@media (min-width: 840px) {
+    .modal {
+        width: 90vw;
+        max-height: 60vh;
     }
 }
-@media (max-width: 640px) {
-    .buttonClose {
-        left: 75%;
+@media (min-width: 640px) {
+    .modal {
+        width: 90vw;
+        height: 65vh;
     }
 }
 
+@media (min-height: 840px) {
+    .modal {
+        height: 60vh;
+    }
+}
+
+@media (min-height: 1024px) {
+    .modal {
+        height: 45vh;
+    }
+}
+
+@media (min-width: 1024px) {
+    .modal {
+        max-width: 65vh;
+    }
+}
 @keyframes logo-spin {
     from {
         transform: rotate(0deg);
