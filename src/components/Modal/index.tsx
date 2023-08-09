@@ -9,12 +9,11 @@ export const Modal = ({
     modalOpen,
     children,
 }: ModalProps) => {
-    const newSet = settings;
     if (isOpen) {
         return (
             <div className='backdrop'>
                 <div className='modal'>
-                    {newSet.btnClose && (
+                    {settings.btnClose && (
                         <button
                             type='button'
                             className='buttonClose'
