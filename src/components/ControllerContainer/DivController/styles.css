@@ -1,0 +1,21 @@
+.div-controller {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    color: slategrey;
+}
+
+.div-controller label {
+    font-weight: 700;
+    position: absolute;
+    padding: 0.5rem;
+    transition: 0.5s ease all;
+}
+
+.div-controller input:focus ~ label,
+.div-controller input:valid ~ label {
+    color: #10454f;
+    transform: translateY(-16px);
+    font-size: small;
+}

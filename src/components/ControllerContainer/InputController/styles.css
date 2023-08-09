@@ -1,0 +1,21 @@
+.input-controller {
+    border: 1px #e7e7e7 solid;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    outline: 0;
+    font-weight: 500;
+    font-size: 1.2rem;
+    width: 30vw;
+}
+
+@media (max-width: 640px) {
+    .input-controller {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 840px) {
+    .input-controller {
+        width: 80vw;
+    }
+}
