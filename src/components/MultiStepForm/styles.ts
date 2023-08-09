@@ -2,17 +2,21 @@ import styled from 'styled-components';
 
 interface ButtonPrevNextProps {
     borderColor: string;
+    backgroundHover: string;
 }
 export const ButtonPrevNext = styled.button<ButtonPrevNextProps>`
     border: none;
     padding: 1rem;
     border-radius: 0.5rem;
     margin: 1rem;
-    transition: 1s ease all;
+    font-weight: 600;
+    transition: 0.5s ease all;
 
     &&:hover {
-        border: 1px solid ${(props) => props.borderColor};
-        background: none;
+        border: 0px solid ${(props) => props.borderColor};
+        background-color: ${(props) => props.backgroundHover};
+        color: #fffff0;
+
         cursor: pointer;
     }
 `;
