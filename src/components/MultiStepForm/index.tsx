@@ -1,51 +1,46 @@
 import { ButtonPrevNext, MainContainer } from './styles';
-import UserForm from '../UserForm/userForm';
-import { useForm } from '../../hooks/useForm';
-import PetPrimaryForm from '../PetPrimaryForm/petPrimaryForm';
-import PetSecondaryForm from '../PetSecondaryForm/petSecondaryForm';
-import { IPet } from '../../interfaces/IPet';
-import { ChangeEvent, useState } from 'react';
-
-const formBuilder: IPet = {
-    owner: '',
-    mail: '',
-    size: '',
-    weight: '',
-    sex: '',
-    color: '',
-    specie: '',
-};
+import useForm from '../../hooks/useForm';
 
 export const MultiStepForm = () => {
-    const [data, setData] = useState(formBuilder);
-    const changeValueInput = (key: string, value: string) => {
-        console.log(key, value);
-
-        setData((prev) => {
-            return { ...prev, [key]: value };
-        });
-    };
-    const stepsComponents = [
-        <UserForm data={data} externalFunc={changeValueInput} />,
-        <PetPrimaryForm />,
-        <PetSecondaryForm />,
-    ];
-    const { step, changeStep } = useForm(stepsComponents);
-
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (step >= 3 || step < 0) return;
-        if (e.currentTarget.innerText === 'Avançar') changeStep(true);
-        if (e.currentTarget.innerText != 'Avançar') changeStep(false);
-    };
+    const { step, handleClick, stepsComponents, petData, owner } = useForm();
 
     return (
         <MainContainer>
-            <h1>Olá! vamos cadastrar algumas informações do seu Pet </h1>
-            <form>
+            <h1>
+                {step >= 1 ? 'Informações do seu Pet🐶' : 'Cadastre-se 🐱‍🏍 '}
+            </h1>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    let petDataIsEmpty = true;
+                    let ownerDataIsEmpty = true;
+                    if (petData)
+                        Object.values(petData!).forEach((value) => {
+                            if (value != '') petDataIsEmpty = false;
+                            if (value == '') petDataIsEmpty = true;
+                        });
+                    Object.values(owner!).forEach((value) => {
+                        if (value != '') ownerDataIsEmpty = false;
+                        if (value == '') ownerDataIsEmpty = true;
+                    });
+                    if (petDataIsEmpty && ownerDataIsEmpty)
+                        alert(
+                            'Preencha os campos da seção de cadastro para prosseguir!'
+                        );
+                    if (!ownerDataIsEmpty) {
+                        if (!petDataIsEmpty) {
+                            console.log(owner, petData);
+                        } else {
+                            console.log(owner);
+                        }
+                    }
+                }}
+            >
                 {stepsComponents[step]}
                 {step != 0 && (
                     <ButtonPrevNext
                         borderColor=' #f00'
+                        backgroundHover='#f00'
                         onClick={handleClick}
                         type='button'
                     >
@@ -55,11 +50,8 @@ export const MultiStepForm = () => {
                 {step >= 2 && (
                     <ButtonPrevNext
                         borderColor=' #10454f'
+                        backgroundHover='#10454f'
                         type='submit'
-                        onClick={(e) => {
-                            e.preventDefault();
-                            console.log(data);
-                        }}
                     >
                         Finalizar
                     </ButtonPrevNext>
@@ -67,13 +59,26 @@ export const MultiStepForm = () => {
                 {step < 2 && (
                     <ButtonPrevNext
                         borderColor=' #10454f'
+                        backgroundHover='#10454f'
                         type='button'
                         onClick={handleClick}
                     >
                         Avançar
                     </ButtonPrevNext>
                 )}
+                {step < 1 && (
+                    <ButtonPrevNext
+                        borderColor=' #887b06'
+                        backgroundHover='#887b06'
+                        type='submit'
+                    >
+                        Cadastrar Pet Depois
+                    </ButtonPrevNext>
+                )}
             </form>
+            <div>
+                
+            </div>
         </MainContainer>
     );
 };
